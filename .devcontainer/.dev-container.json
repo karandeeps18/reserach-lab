@@ -1,0 +1,14 @@
+{
+    "name": "qsentia-pipeline",
+    "build": { "dockerfile": "Dockerfile" },
+    "postCreateCommand": "uv venv && . .venv/bin/activate && uv sync",
+    "mounts": [
+      "source=${localWorkspaceFolder}/data,target=/work/data,type=bind",
+      "source=${localWorkspaceFolder}/.env,target=/work/.env,type=bind,consistency=cached"
+    ],
+    "remoteEnv": { "PIP_DISABLE_PIP_VERSION_CHECK": "1" },
+    "features": {
+      "ghcr.io/devcontainers/features/common-utils:2": {},
+      "ghcr.io/devcontainers/features/git:1": {}
+    }
+  }
