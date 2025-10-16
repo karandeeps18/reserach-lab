@@ -1,0 +1,14 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# data & secrets
+data/
+.env
+*.parquet
+*.duckdb
+
+# editor
+.ipynb_checkpoints/
+.vscode/
