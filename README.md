@@ -26,52 +26,6 @@ This project sought to solve these problems by using data design principles
 <img width="1066" height="552" alt="image" src="https://github.com/user-attachments/assets/3ce1bf0c-f531-4bd4-bfcf-c5d623be8467" />
 
 
-## Project Structure 
-`Datalab/
-├── cli.py
-├── pyproject.toml
-├── README.md
-├── DESIGN.md
-│
-├── vendors/
-│   ├── polygon.py
-│   └── fmp.py
-│
-├── utils/
-│   ├── watermark.py
-│   └── time.py
-│
-├── bronze/
-│   ├── load_aggregates.py
-│   ├── load_options.py
-│   ├── load_news.py
-│   └── load_fmp.py
-│
-├── silver/
-│   ├── normalize_aggregates.py
-│   ├── compact_options.py
-│   ├── normalize_news.py
-│   └── compact_fmp.py
-│
-├── gold/
-│   ├── make_price_panels.py
-│   ├── make_option_features.py
-│   └── make_fmp_gold.py
-│
-├── meta/
-│   └── watermarks.sqlite
-│
-├── data/
-│   ├── bronze/
-│   │   └── aggregates/
-│   │       └── dt=YYYY-MM-DD/
-│   │           └── symbol=SYMBOL/
-│   │               └── part.parquet
-│   ├── silver/
-│   └── gold/
-│
-└── roadmap/
-    └── alpaca.md`
 
 ## Example usage
 - Load daily equity aggregates for a symbol:
