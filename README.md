@@ -27,14 +27,14 @@ This project sought to solve these problems by using data design principles
 
 
 ## Project Structure 
-Datalab/
+`Datalab/
 ├── vendors/        # API clients with retry logic
 ├── bronze/         # Raw ingestion (immutable)
 ├── silver/         # Normalization & schema enforcement
 ├── gold/           # Analysis-ready datasets
 ├── utils/          # Watermarking, helpers
 ├── cli.py          # Command-line orchestration
-└── pyproject.toml  # Project metadata & dependencies
+└── pyproject.toml  # Project metadata & dependencies`
 
 ## Example usage
 - Load daily equity aggregates for a symbol:
