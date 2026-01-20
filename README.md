@@ -28,13 +28,51 @@ This project sought to solve these problems by using data design principles
 
 ## Project Structure 
 `Datalab/
-├── vendors/        # API clients with retry logic
-├── bronze/         # Raw ingestion (immutable)
-├── silver/         # Normalization & schema enforcement
-├── gold/           # Analysis-ready datasets
-├── utils/          # Watermarking, helpers
-├── cli.py          # Command-line orchestration
-└── pyproject.toml  # Project metadata & dependencies`
+├── cli.py                  # CLI entry point (Typer orchestration)
+├── pyproject.toml          # Project metadata and dependencies
+├── README.md               # Project overview and quickstart
+├── DESIGN.md               # Architecture and design rationale
+│
+├── vendors/                # External data source clients
+│   ├── polygon.py          # Polygon API client with retry logic
+│   └── fmp.py              # Financial Modeling Prep client
+│
+├── utils/                  # Shared utilities
+│   ├── watermark.py        # SQLite-backed watermark tracking
+│   └── time.py             # Timestamp and calendar helpers
+│
+├── bronze/                 # Bronze layer (raw, immutable data)
+│   ├── load_aggregates.py  # Equity aggregates ingestion (month-sliced)
+│   ├── load_options.py     # Options raw ingestion
+│   ├── load_news.py        # News ingestion with idempotency
+│   └── load_fmp.py         # Fundamentals raw ingestion
+│
+├── silver/                 # Silver layer (normalized, typed)
+│   ├── normalize_aggregates.py  # DuckDB-based normalization
+│   ├── compact_options.py       # Options feature engineering
+│   ├── normalize_news.py        # News deduplication and typing
+│   └── compact_fmp.py           # Fundamentals schema normalization
+│
+├── gold/                   # Gold layer (analysis-ready datasets)
+│   ├── make_price_panels.py     # Time-series panels for backtesting
+│   ├── make_option_features.py  # Model-ready option features
+│   └── make_fmp_gold.py         # Snapshot and panel fundamentals
+│
+├── meta/                   # Pipeline state
+│   └── watermarks.sqlite   # Dataset-level processing state
+│
+├── data/                   # Data lake storage (generated)
+│   ├── bronze/
+│   │   └── aggregates/
+│   │       └── dt=YYYY-MM-DD/
+│   │           └── symbol=SYMBOL/
+│   │               └── part.parquet
+│   ├── silver/
+│   └── gold/
+│
+└── roadmap/                # Planned extensions (not active)
+    └── alpaca.md            # Live trading integration design (future)
+`
 
 ## Example usage
 - Load daily equity aggregates for a symbol:
