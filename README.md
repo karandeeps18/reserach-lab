@@ -28,40 +28,40 @@ This project sought to solve these problems by using data design principles
 
 ## Project Structure 
 `Datalab/
-├── cli.py                  # CLI entry point (Typer orchestration)
-├── pyproject.toml          # Project metadata and dependencies
-├── README.md               # Project overview and quickstart
-├── DESIGN.md               # Architecture and design rationale
+├── cli.py
+├── pyproject.toml
+├── README.md
+├── DESIGN.md
 │
-├── vendors/                # External data source clients
-│   ├── polygon.py          # Polygon API client with retry logic
-│   └── fmp.py              # Financial Modeling Prep client
+├── vendors/
+│   ├── polygon.py
+│   └── fmp.py
 │
-├── utils/                  # Shared utilities
-│   ├── watermark.py        # SQLite-backed watermark tracking
-│   └── time.py             # Timestamp and calendar helpers
+├── utils/
+│   ├── watermark.py
+│   └── time.py
 │
-├── bronze/                 # Bronze layer (raw, immutable data)
-│   ├── load_aggregates.py  # Equity aggregates ingestion (month-sliced)
-│   ├── load_options.py     # Options raw ingestion
-│   ├── load_news.py        # News ingestion with idempotency
-│   └── load_fmp.py         # Fundamentals raw ingestion
+├── bronze/
+│   ├── load_aggregates.py
+│   ├── load_options.py
+│   ├── load_news.py
+│   └── load_fmp.py
 │
-├── silver/                 # Silver layer (normalized, typed)
-│   ├── normalize_aggregates.py  # DuckDB-based normalization
-│   ├── compact_options.py       # Options feature engineering
-│   ├── normalize_news.py        # News deduplication and typing
-│   └── compact_fmp.py           # Fundamentals schema normalization
+├── silver/
+│   ├── normalize_aggregates.py
+│   ├── compact_options.py
+│   ├── normalize_news.py
+│   └── compact_fmp.py
 │
-├── gold/                   # Gold layer (analysis-ready datasets)
-│   ├── make_price_panels.py     # Time-series panels for backtesting
-│   ├── make_option_features.py  # Model-ready option features
-│   └── make_fmp_gold.py         # Snapshot and panel fundamentals
+├── gold/
+│   ├── make_price_panels.py
+│   ├── make_option_features.py
+│   └── make_fmp_gold.py
 │
-├── meta/                   # Pipeline state
-│   └── watermarks.sqlite   # Dataset-level processing state
+├── meta/
+│   └── watermarks.sqlite
 │
-├── data/                   # Data lake storage (generated)
+├── data/
 │   ├── bronze/
 │   │   └── aggregates/
 │   │       └── dt=YYYY-MM-DD/
@@ -70,9 +70,8 @@ This project sought to solve these problems by using data design principles
 │   ├── silver/
 │   └── gold/
 │
-└── roadmap/                # Planned extensions (not active)
-    └── alpaca.md            # Live trading integration design (future)
-`
+└── roadmap/
+    └── alpaca.md`
 
 ## Example usage
 - Load daily equity aggregates for a symbol:
