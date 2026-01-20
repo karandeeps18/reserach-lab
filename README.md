@@ -11,6 +11,51 @@ Bad data assumption is the biggest issue and which creeps through:
 
 This project sought to solve these problems by using data design principles
 ## Key Features
-- Medallion Architecture (Bronze/Silver/Gold): this clearly seperates raw data, cleaned data and analysis ready datasets.
-- Point-in-time correctness: Explicit handling of timestamps, publication delays, and calendar-based feature engineering to prevent lookahead bias
-- Multiple data streams: Equity price aggregates (Polygon), Options data with derived features (IV, RV, Black-Scholes references), News data with watermark-based idempotency, Company fundamentals (Financial Modeling Prep)
+- **Medallion Architecture (Bronze/Silver/Gold):** this clearly seperates raw data, cleaned data and analysis ready datasets.
+- **Point-in-time correctness:** Explicit handling of timestamps, publication delays, and calendar-based feature engineering to prevent lookahead bias
+- **Multiple data streams:** Equity price aggregates (Polygon), Options data with derived features (IV, RV, Black-Scholes references), News data with watermark-based idempotency, Company fundamentals (Financial Modeling Prep)
+- **Efficient storage:** Parqet format, hive-style partitioning: `dt=YYYY-MM-DD / symbol=SYMBOL` for efficent query for backtests and reserach notebooks
+- **Idempotent and Restart Safe:** Used SQLite backed watermark tracking for the safe reruns without duplication
+- **Prallel ETL Orchestration:** Threaded igestion balanced against API ratelimits
+- **Reproducible:** Dockerized environment
+
+## Architecture Design 
+<img width="1207" height="422" alt="image" src="https://github.com/user-attachments/assets/5f9dafcd-9b40-44e9-8332-5ff4b16059c8" />
+## Data Flow
+<img width="1066" height="552" alt="image" src="https://github.com/user-attachments/assets/3ce1bf0c-f531-4bd4-bfcf-c5d623be8467" />
+
+
+## Project Structure 
+Datalab/
+├── vendors/        # API clients with retry logic
+├── bronze/         # Raw ingestion (immutable)
+├── silver/         # Normalization & schema enforcement
+├── gold/           # Analysis-ready datasets
+├── utils/          # Watermarking, helpers
+├── cli.py          # Command-line orchestration
+└── pyproject.toml  # Project metadata & dependencies
+
+## Example usage
+- Load daily equity aggregates for a symbol:
+`python -m Datalab.cli load-aggregates AAPL \
+  --start 2024-01-01 \
+  --end 2024-12-31`
+
+- Run the full pipeline in parallel:
+`python -m Datalab.cli run-all-parallel AAPL,MSFT,GOOGL \
+  --start 2024-01-01 \
+  --end 2024-12-31`
+
+## Design principles (high level)
+- Data correctness 
+- Explicit timestamps everywhere
+- Storage optimized for time-series research
+- Reproducibility over cleverness
+- Backtest parity with live trading assumptions
+
+## Future roadmap
+- Alpaca live-trading integration (shared gold layer for backtest & live)
+- Incremental daily ingestion using watermarks
+- Real-time streaming ingestion
+- ML feature store integration
+- Backtest execution engine
