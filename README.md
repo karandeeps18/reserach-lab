@@ -21,6 +21,7 @@ This project sought to solve these problems by using data design principles
 
 ## Architecture Design 
 <img width="1207" height="422" alt="image" src="https://github.com/user-attachments/assets/5f9dafcd-9b40-44e9-8332-5ff4b16059c8" />
+
 ## Data Flow
 <img width="1066" height="552" alt="image" src="https://github.com/user-attachments/assets/3ce1bf0c-f531-4bd4-bfcf-c5d623be8467" />
 
