@@ -44,7 +44,7 @@ This project sought to solve these problems by using data design principles
 - Data correctness 
 - Explicit timestamps everywhere
 - Storage optimized for time-series research
-- Reproducibility over cleverness
+- Reproducibility
 - Backtest parity with live trading assumptions
 
 ## Future roadmap
