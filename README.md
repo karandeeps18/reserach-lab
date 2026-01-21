@@ -7,7 +7,7 @@ The goal is not just to fetch data, but to build trustworthy research infrastruc
 Bad data assumption is the biggest issue and which creeps through:
 1. Using information that was not avaiable at decision time (look-ahead bias)
 2. Mixing timestamps, timezones, or reporting delays
-3. inefficient storage and fecting the data cause large backtest impracticle
+3. inefficient storage and affecting the data cause large backtest impracticle
 
 This project sought to solve these problems by using data design principles
 ## Key Features
