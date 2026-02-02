@@ -15,4 +15,4 @@ dependencies = [
   "pandera>=0.20"
 ]
 
-[tool.uv]  # if using uv (recommended)
+[tool.uv]  
