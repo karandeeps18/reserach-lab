@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential curl ca-certificates git && \
     rm -rf /var/lib/apt/lists/*
 
-# fast, reproducible installer
+# reproducible installer
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:${PATH}" \
     PIP_NO_CACHE_DIR=1 PYTHONDONTWRITEBYTECODE=1
